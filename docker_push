@@ -1,0 +1,3 @@
+docker tag jenkins/jenkins:lts xbeastx/jenkins
+
+docker push xbeastx/jenkins
