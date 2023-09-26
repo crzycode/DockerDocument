@@ -1,1 +1,3 @@
 sudo docker pull mcr.microsoft.com/mssql/server:2022-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=TheB!tBe@st" -p 1433:1433 --name Beast --hostname Beast -d mcr.microsoft.com/mssql/server:2022-latest
