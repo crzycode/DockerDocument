@@ -3,3 +3,8 @@ sudo docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=TheB!tBe@st" -p 1433:1433 --name Beast --hostname Beast -d mcr.microsoft.com/mssql/server:2022-latest
 
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=TheB!tBe@st" -p 1011:1433 --name Beast --hostname Beast -d mcr.microsoft.com/mssql/server:2022-latest
+
+create network first 
+docker network create -d bridge --subnet 172.0.0.0/16 --gateway 172.0.0.1 network
+
+docker run -dti --network network --ip 172.0.0.5 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=TheB!tBe@st" -p 1011:1433 --name Beast --hostname Beast -d mcr.microsoft.com/mssql/server:2022-latest
