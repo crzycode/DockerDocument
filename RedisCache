@@ -1,5 +1,9 @@
 docker pull redis
 docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest
 
+//with ip address 
+first create a network
+docker run -dti --network network --ip 172.0.0.6 -d --name cache -p 6001:6001 redis/redis-stack-server:latest
+
 // connect with cli
 docker exec -it redis-stack-server redis-cli
