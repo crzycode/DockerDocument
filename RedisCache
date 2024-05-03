@@ -7,3 +7,8 @@ docker run -dti --network network --ip 172.0.0.6 -d --name cache -p 6001:6001 re
 
 // connect with cli
 docker exec -it redis-stack-server redis-cli
+
+//or 
+
+docker pull redis
+docker run -d -p 2000:2000 --name redistest redis
