@@ -12,3 +12,4 @@ docker exec -it redis-stack-server redis-cli
 
 docker pull redis
 docker run -d -p 2000:2000 --name redistest redis
+docker exec -it redistest sh
