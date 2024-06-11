@@ -1,0 +1,10 @@
+
+FROM node:18-alpine
+RUN npm install -g http-server
+WORKDIR /usr/src/app
+EXPOSE 8080
+CMD ["http-server", "-p", "8080"]
+
+docker build -t my-node-http-server .
+
+docker run -d -p 8080:8080 --name my-node-container -v /d/AppstoreServer:/usr/src/app my-node-http-server
