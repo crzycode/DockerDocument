@@ -3,7 +3,7 @@ FROM node:18-alpine
 RUN npm install -g http-server
 WORKDIR /usr/src/app
 EXPOSE 8080
-CMD ["http-server", "-p", "8080"]
+CMD ["http-server -c-1 --cors", "-p", "8080"]
 
 docker build -t my-node-http-server .
 
