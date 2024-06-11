@@ -11,3 +11,20 @@ docker run -dti --network network --ip 172.0.0.5 -e "ACCEPT_EULA=Y" -e "MSSQL_SA
 
 dynamic
 "docker run -e " + "ACCEPT_EULA=Y" + " -e " + "MSSQL_SA_PASSWORD=Mangal@123" + " -e " + "MSSQL_PID=Express" + $" -p {Ip}:{Port}:1433 --name Docker{DockerName}  --hostname Docker{DockerName} -d mcr.microsoft.com/mssql/server:2019-latest"
+
+//with the d drive data storage
+
+mkdir D:\mssql-data
+
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" -p 1433:1433 --name sqlserver -v D:\mssql-data:/var/opt/mssql -d mcr.microsoft.com/mssql/server:2022-latest
+
+-e "ACCEPT_EULA=Y": Accepts the end-user license agreement.
+-e "SA_PASSWORD=YourStrong!Passw0rd": Sets the SA user password.
+-p 1433:1433: Maps port 1433 on the container to port 1433 on the host.
+--name sqlserver: Names the container sqlserver.
+-v D:\mssql-data:/var/opt/mssql: Mounts the D:\mssql-data directory to /var/opt/mssql in the container.
+-d mcr.microsoft.com/mssql/server:2022-latest: Runs the latest SQL Server 2022 image.
+
+docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P YourStrong!Passw0rd
