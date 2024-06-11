@@ -1,0 +1,28 @@
+docker pull mongo:latest
+
+
+docker run --name mongodb -v D:\mongodb-data:/data/db -p 27017:27017 -d mongo:latest
+
+docker ps
+
+docker exec -it mongodb mongo
+
+show dbs
+
+//Additional Configuration (Optional)
+
+docker exec -it mongodb mongo
+
+use admin
+db.createUser({
+    user: "admin",
+    pwd: "YourStrongPassword",
+    roles: [ { role: "root", db: "admin" } ]
+})
+
+
+docker stop mongodb
+docker rm mongodb
+docker run --name mongodb -v D:\mongodb-data:/data/db -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=YourStrongPassword -d mongo:latest
+
+docker exec -it mongodb mongo -u admin -p YourStrongPassword --authenticationDatabase admin
